@@ -52,7 +52,7 @@ enum class TokenType {
     TStar,
     TTilde,
 
-    Tbang,
+    TBang,
     TBangEqual,
     TEqual,
     TEqualEqual,
