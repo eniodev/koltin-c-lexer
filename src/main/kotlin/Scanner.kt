@@ -62,22 +62,22 @@ class Scanner(val source: String) {
     }
 
     fun advance(): Char {
-        return source.get(current++)
+        return source[current++]
     }
 
     fun peek(): Char {
         if (isAtEnd()) return Char(0)
-        return source.get(current)
+        return source[current]
     }
 
     fun peekNext(): Char {
         if (current + 1 >= source.length) return Char(0)
-        return source.get(current + 1)
+        return source[current + 1]
     }
 
     fun match(ch: Char): Boolean {
         if (isAtEnd()) return false
-        if (source.get(current) != ch) return false
+        if (source[current] != ch) return false
 
         current++
         return true
@@ -85,7 +85,10 @@ class Scanner(val source: String) {
 
     fun string() {
         while (peek() != '"' && !isAtEnd()) {
-            if (peek() == '\n') line++
+            if (peek() == '\n') {
+                print("______________________-____________-_____________")
+                line++
+            }
             advance()
         }
 
@@ -112,7 +115,7 @@ class Scanner(val source: String) {
         while (isAlphaNumeric(peek())) advance()
 
         val value = source.substring(start, current)
-        var ttype = keywords.get(value)
+        var ttype = keywords[value]
         if (ttype == null) ttype = TokenType.TIdentifier
         addToken(ttype)
     }
@@ -138,8 +141,7 @@ class Scanner(val source: String) {
     }
 
     fun scanToken() {
-        val ch = advance()
-        when (ch) {
+        when (val ch = advance()) {
             '(' -> addToken(TokenType.TLeftParen)
             ')' -> addToken(TokenType.TRightParen)
             '{' -> addToken(TokenType.TLeftBrace)
@@ -158,6 +160,7 @@ class Scanner(val source: String) {
                 while (peek() != '\n' && !isAtEnd()) advance()
             } else addToken(TokenType.TSlash)
 
+            '\n' -> line++
             '"' -> string()
             else -> {
                 if (isDigit(ch)) number()

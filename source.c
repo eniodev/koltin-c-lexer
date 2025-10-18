@@ -1,12 +1,15 @@
-#include<std.io>
+#include <stdio.h>
 
-int sum(x: int, y: float) return x+y;
+int main() {
 
-// this is a comment
-(( )){} // grouping stuff
-!*+-/=<> <= == // operators
+    int number1, number2, sum;
 
-int main () {
-   printf(sum(12, 14.5));
-   puts("hello world")
+    printf("Enter two integers: ");
+    scanf("%d %d", &number1, &number2);
+
+    // calculate the sum
+    sum = number1 + number2;
+
+    printf("%d + %d = %d", number1, number2, sum);
+    return 0;
 }

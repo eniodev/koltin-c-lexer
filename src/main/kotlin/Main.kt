@@ -12,5 +12,5 @@ fun main() {
     val source: String = readFile("source.c")
     val lexer = Scanner(source)
     lexer.scanTokens()
-    lexer.tokens.forEach { println(it.lexeme + "::" + it.ttype.name) }
+    lexer.tokens.forEach { println("${it.line} :: ${it.lexeme} :: ${it.ttype.name}") }
 }
