@@ -1,4 +1,4 @@
-##include<std.io>
+#include<std.io>
 
 int sum(x: int, y: float) return x+y;
 
@@ -6,4 +6,7 @@ int sum(x: int, y: float) return x+y;
 (( )){} // grouping stuff
 !*+-/=<> <= == // operators
 
-"hello world"
+int main () {
+   printf(sum(12, 14.5));
+   puts("hello world")
+}

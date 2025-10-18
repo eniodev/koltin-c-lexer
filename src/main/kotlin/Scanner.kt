@@ -111,7 +111,10 @@ class Scanner(val source: String) {
     fun identifier() {
         while (isAlphaNumeric(peek())) advance()
 
-        addToken(TokenType.TIdentifier)
+        val value = source.substring(start, current)
+        var ttype = keywords.get(value)
+        if (ttype == null) ttype = TokenType.TIdentifier
+        addToken(ttype)
     }
 
     fun isAlphaNumeric(ch: Char): Boolean {
